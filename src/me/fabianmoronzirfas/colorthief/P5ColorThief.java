@@ -25,11 +25,13 @@
  * @version     ##library.prettyVersion## (##library.version##)
  */
 
-package template.library;
+package me.fabianmoronzirfas.colorthief;
 
 
 import processing.core.*;
+import de.androidpit.colorthief.*;
 
+import java.awt.image.BufferedImage;
 /**
  * This is a template class and can be used to start a new processing library or tool.
  * Make sure you rename this class as well as the name of the example package 'template' 
@@ -41,12 +43,14 @@ import processing.core.*;
  * @example Hello 
  */
 
-public class HelloLibrary {
+public class P5ColorThief {
 	
 	// myParent is a reference to the parent sketch
 	PApplet myParent;
 
 	int myVariable = 0;
+	//	BufferedImage bimg = (BufferedImage) img.getImage();
+
 	
 	public final static String VERSION = "##library.prettyVersion##";
 	
@@ -58,20 +62,66 @@ public class HelloLibrary {
 	 * @example Hello
 	 * @param theParent
 	 */
-	public HelloLibrary(PApplet theParent) {
+	public P5ColorThief(PApplet theParent) {
 		myParent = theParent;
+		new ColorThief();
+
 		welcome();
 	}
+	/**
+	 * 
+	 * @param img PImage the image to analyse
+	 * @param num The number of colors to create 
+	 * @return Array of colors
+	 */
+	 @SuppressWarnings({ "deprecation"})	
+	public int [] getPalette(PImage img, int num){
+//		BufferedImage bimg = (BufferedImage) img.getImage();
+		int[][] pal = ColorThief.getPalette(transform(img), num);
+		int [] palette = new int[num];
+		for(int i = 0; i < num; i++){
+			palette[i] = myParent.color(pal[i][0], pal[i][1], pal[i][2]);
+		}
+		return palette;
+	}
+
+		public int [] getPalette(PImage img, int num, int quality, boolean ignoreWhite){
+//			BufferedImage bimg = (BufferedImage) img.getImage();
+			int[][] pal = ColorThief.getPalette(transform(img), num, quality, ignoreWhite);
+			int [] palette = new int[num];
+			for(int i = 0; i < num; i++){
+				palette[i] = myParent.color(pal[i][0], pal[i][1], pal[i][2]);
+			}
+			return palette;
+		}
+		
+	public int getColor(PImage img){
+		int [] col = ColorThief.getColor(transform(img));
+		
+		return myParent.color(col[0], col[1], col[2]);
+	}
+
+	public int getColor(PImage img, int quality, boolean ignoreWhite){
+		int [] col = ColorThief.getColor(transform(img),quality,ignoreWhite);
+		
+		return myParent.color(col[0], col[1], col[2]);
+	}
 	
-	
+	private  BufferedImage transform(PImage img){
+		BufferedImage bimg = (BufferedImage) img.getImage();
+		return bimg;
+	}
 	private void welcome() {
 		System.out.println("##library.name## ##library.prettyVersion## by ##author##");
+		System.out.println("based on: ");
+		System.out.println("https://github.com/SvenWoltmann/color-thief-java by SvenWoltmann");
+		System.out.println("Licensed under the Creative Commons Attribution 2.5 License");
 	}
 	
 	
-	public String sayHello() {
-		return "hello library.";
-	}
+//	public String sayHello() {
+//		return "hello library.";
+//	}
 	/**
 	 * return the version of the library.
 	 * 
@@ -88,16 +138,16 @@ public class HelloLibrary {
 	 * @param theB
 	 *          the height of test
 	 */
-	public void setVariable(int theA, int theB) {
-		myVariable = theA + theB;
-	}
+//	public void setVariable(int theA, int theB) {
+//		myVariable = theA + theB;
+//	}
 
 	/**
 	 * 
 	 * @return int
 	 */
-	public int getVariable() {
-		return myVariable;
-	}
+//	public int getVariable() {
+//		return myVariable;
+//	}
 }
 
