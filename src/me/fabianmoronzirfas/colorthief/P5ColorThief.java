@@ -48,7 +48,8 @@ public class P5ColorThief {
 	// myParent is a reference to the parent sketch
 	PApplet myParent;
 
-	int myVariable = 0;
+	private boolean debug = false;
+	
 	//	BufferedImage bimg = (BufferedImage) img.getImage();
 
 	
@@ -68,9 +69,15 @@ public class P5ColorThief {
 
 		welcome();
 	}
+	
+	private void msg(String str){
+		
+		if (debug) System.out.println(str);
+
+	}
 	/**
 	 * 
-	 * @param img PImage the image to analyse
+	 * @param img PImage the image to analyze
 	 * @param num The number of colors to create 
 	 * @return Array of colors
 	 */
@@ -78,8 +85,9 @@ public class P5ColorThief {
 	public int [] getPalette(PImage img, int num){
 //		BufferedImage bimg = (BufferedImage) img.getImage();
 		int[][] pal = ColorThief.getPalette(transform(img), num);
-		int [] palette = new int[num];
-		for(int i = 0; i < num; i++){
+		msg(Integer.toString(pal.length));
+		int [] palette = new int[pal.length];
+		for(int i = 0; i < pal.length; i++){
 			palette[i] = myParent.color(pal[i][0], pal[i][1], pal[i][2]);
 		}
 		return palette;
@@ -88,8 +96,8 @@ public class P5ColorThief {
 		public int [] getPalette(PImage img, int num, int quality, boolean ignoreWhite){
 //			BufferedImage bimg = (BufferedImage) img.getImage();
 			int[][] pal = ColorThief.getPalette(transform(img), num, quality, ignoreWhite);
-			int [] palette = new int[num];
-			for(int i = 0; i < num; i++){
+			int [] palette = new int[pal.length];
+			for(int i = 0; i < pal.length; i++){
 				palette[i] = myParent.color(pal[i][0], pal[i][1], pal[i][2]);
 			}
 			return palette;
