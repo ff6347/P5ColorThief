@@ -17,6 +17,38 @@ Shows the basic usage of the library.
 
 Shows how to extract color palettes from videos frame by frame.  
 
+## Usage  
+
+First import the library  
+
+    import me.fabianmoronzirfas.colorthief.*;
+
+Then make a new color thief object
+
+    P5ColorThief ct;
+
+Initialize the object in void setup
+
+    ct = new P5ColorThief(this);
+
+Load your image
+
+      PImage myImage = loadImage("test.jpg");
+
+
+Get the dominat colors from your image
+
+    color [] palette = ct.getPalette(myImage, 3);
+
+Now you have an array of colors that you can use.
+
+Also available methods are:  
+
+    color [] palette = ct.getPalette(PImage img, int numberOfColors, int quality, boolean ignoreWhite);
+    color dominantColor = ct.getColor(PImage img);
+    color dominantColor = ct.getColor(PImage img, int quality, boolean ignoreWhite);
+    
+
 
 ###Thanks
 
