@@ -1,6 +1,8 @@
 P5ColorThief
 ============
 
+[![Join the chat at https://gitter.im/fabiantheblind/P5ColorThief](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/fabiantheblind/P5ColorThief?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A Processing wrapper for [https://github.com/SvenWoltmann/color-thief-java](https://github.com/SvenWoltmann/color-thief-java)
 
 Download the library [here](https://github.com/fabiantheblind/P5ColorThief/releases/download/1.0.0/P5ColorThief.zip).
